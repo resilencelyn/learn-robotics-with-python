@@ -15,7 +15,7 @@ import numpy as np
 import math
 
 def euler_to_matrix(euler):
-    '''Transform Euler angles into rotation matrix.
+    '''Converts Euler angles to rotation matrix.
     :param euler: The Euler angles
     Example Input:
         euler = np.array([0, 0, 0])
@@ -38,7 +38,7 @@ def euler_to_matrix(euler):
     return mat_z * mat_y * mat_x
     
 def matrix_to_euler(matrix):
-    '''Transform rotation matrix into Euler angles.
+    '''Converts rotation matrix to Euler angles.
     :matrix: Rotation matrix
     Example Input:
         matrix = np.mat([[1, 0, 0],
@@ -60,3 +60,20 @@ def matrix_to_euler(matrix):
         z = 0
 
     return np.array([x, y, z])
+
+def vec_to_so3(vec):
+    '''Converts a 3-vector to an so(3) representation
+
+    :param vec: A 3-vector
+    :return: The skew symmetric representation of vec
+
+    Example Input:
+        vec = np.array([1, 2, 3])
+    Output:
+        np.mat([[ 0, -3,  2],
+                [ 3,  0, -1],
+                [-2,  1,  0]])
+    '''
+    return np.mat([[ 0,     -vec[2],  vec[1]],
+                   [ vec[2],      0, -vec[0]],
+                   [-vec[1], vec[0],  0     ]])
