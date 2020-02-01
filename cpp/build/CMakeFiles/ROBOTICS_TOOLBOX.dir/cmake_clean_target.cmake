@@ -1,0 +1,3 @@
+file(REMOVE_RECURSE
+  "libROBOTICS_TOOLBOX.a"
+)

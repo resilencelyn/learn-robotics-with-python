@@ -10,11 +10,11 @@
 
 namespace rtb{
 
-Eigen::Matrix3d EulerToMatrix(const double roll, const double pitch, const double yaw)
+Eigen::Matrix3d EulerToMatrix(Eigen::Vector3d euler)
 {
-    Eigen::AngleAxisd rollAngle(roll, Eigen::Vector3d::UnitX());
-    Eigen::AngleAxisd yawAngle(yaw, Eigen::Vector3d::UnitZ());
-    Eigen::AngleAxisd pitchAngle(pitch, Eigen::Vector3d::UnitY());
+    Eigen::AngleAxisd rollAngle(euler[0], Eigen::Vector3d::UnitX());
+    Eigen::AngleAxisd yawAngle(euler[1], Eigen::Vector3d::UnitZ());
+    Eigen::AngleAxisd pitchAngle(euler[2], Eigen::Vector3d::UnitY());
     Eigen::Quaterniond q = rollAngle * yawAngle * pitchAngle;
     Eigen::Matrix3d R = q.matrix();
     return R;

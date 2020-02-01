@@ -6,7 +6,7 @@ namespace rtb{
 
     Eigen::Matrix3d EulerToMatrix(const Eigen::Vector3d);
 
-    Eigen::Vector3d MatrixToEuler(const Eigen::Matrix3d);
+    Eigen::Vector3d MatrixToEuler(Eigen::Matrix3d);
 
 }
 
