@@ -5,6 +5,6 @@ Author: James CHAN
 
 E-mail: 522706601@qq.com
 
-I will upload some functions for robot computing here, which support c + + and python.
+I will upload some functions for robotics compution here, which support c++ and python.
 
 Any idea or discussion is highly welcomed.
