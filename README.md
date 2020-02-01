@@ -1,5 +1,5 @@
 # robotics_toolbox
-Some mathematical tools for Robotics
+Some mathematical tools for Robotics.
 
 Author: James CHAN
 
