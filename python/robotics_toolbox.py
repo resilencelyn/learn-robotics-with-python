@@ -205,7 +205,7 @@ def matrix_log_3(R):
         return theta / 2.0 / np.sin(theta) * (R - np.array(R).T)
 
 def Rp_to_trans(R, p):
-    """Converts a rotation matrix and a position vector into homogeneous
+    '''Converts a rotation matrix and a position vector into homogeneous
     transformation matrix
 
     :param R: A 3x3 rotation matrix
@@ -224,11 +224,11 @@ def Rp_to_trans(R, p):
                 [0, 0, -1, 2],
                 [0, 1,  0, 5],
                 [0, 0,  0, 1]])
-    """
+    '''
     return np.mat(np.r_[np.c_[np.array(R), np.array([p[0,0], p[1,0], p[2,0]])], [[0, 0, 0, 1]]])
 
 def trans_to_Rp(trans):
-    """Converts a homogeneous transformation matrix into a rotation matrix
+    '''Converts a homogeneous transformation matrix into a rotation matrix
     and position vector
 
     :param trans: A homogeneous transformation matrix
@@ -247,6 +247,30 @@ def trans_to_Rp(trans):
          np.mat([[0], 
                  [0], 
                  [3]]))
-    """
+    '''
     trans = np.array(trans)
     return np.mat(trans[0: 3, 0: 3]), np.mat(trans[0: 3, 3]).T
+
+def pose_to_trans(pose):
+    '''Converts a pose vector into a homogeneous transformation matrix
+
+    :param pose: A 6-d pose vector
+    :return trans: The corresponding homogeneous transformation matrix,
+
+    Example Input:
+        pose = np.array([[1, 2, 3, 0, math.pi / 2, 0])
+    Output:
+        np.mat([[ 0, 0, 1, 1],
+                [ 0, 1, 0, 2],
+                [-1, 0, 0, 3],
+                [ 0, 0, 0, 1])
+    '''
+    p = np.mat(pose[0:3]).T
+    euler = pose[3:6]
+    R = euler_to_matrix(euler)
+    trans = Rp_to_trans(R, p)
+    return trans
+
+
+    
+    
